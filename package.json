@@ -9,18 +9,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:blackwoodseven/aws-lambda-decorators.git"
+    "url": "git@github.com:blackwoodseven/unhandled-exception-handler-decorator.git"
   },
   "keywords": [
-    "logger",
-    "aws"
+    "decorator",
+    "aws",
+    "lambda",
+    "exceptionHandler"
   ],
   "author": "Guillem Salas <gs@blackwoodseven.com>",
   "license": "SEE LICENSE IN License.md",
   "bugs": {
-    "url": "https://github.com/blackwoodseven/aws-lambda-decorators/issues"
+    "url": "https://github.com/blackwoodseven/unhandled-exception-handler-decorator/issues"
   },
-  "homepage": "https://github.com/blackwoodseven/aws-lambda-decorators",
+  "homepage": "https://github.com/blackwoodseven/unhandled-exception-handler-decorator",
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.5.3",
