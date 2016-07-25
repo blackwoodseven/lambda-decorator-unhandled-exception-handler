@@ -1,4 +1,6 @@
-const DEFAULT_ERROR_MESSAGE = 'internal server error'
+var awsLogger = require('aws-logger');
+
+const DEFAULT_ERROR_MESSAGE = 'internal server error';
 
 const isCustomError = (err) => typeof err === 'string';
 
@@ -6,7 +8,7 @@ const normalizeError = (err) => {
   if (err == null || isCustomError(err)) {
     return err;
   }
-  console.error('Lambda rejected with error', err)
+  awsLogger.error('Lambda rejected with error', err)
   return DEFAULT_ERROR_MESSAGE;
 }
 
@@ -22,7 +24,7 @@ const UnhandledExceptionHandler = (handlerFn) => (event, context, callback) => {
   try {
     return handlerFn(event, decoratedContext, decoratedCallback)
   } catch (error) {
-    console.error('Unhandled exception catched', error)
+    awsLogger.error('Unhandled exception catched', error)
     callback(DEFAULT_ERROR_MESSAGE)
   }
 }
