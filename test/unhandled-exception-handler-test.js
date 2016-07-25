@@ -2,21 +2,23 @@ const expect = require('chai').expect,
       rewire = require('rewire'),
       decorator = rewire('../index');
 
+const originalAwsLogger = decorator.__get__('awsLogger')
+
 describe('Unhandled exception handler decorator', function() {
   /*
    * prepare console spy
    */
-  var fakeConsole;
+  var fakeLogger;
   beforeEach(() => {
-    fakeConsole = {
+    fakeLogger = {
       error: function() {
-        fakeConsole.args = arguments;
+        fakeLogger.args = arguments;
       }
     }
-    decorator.__set__('console', fakeConsole)
+    decorator.__set__('awsLogger', fakeLogger)
   })
   afterEach(() => {
-    decorator.__set__('console', console)
+    decorator.__set__('awsLogger', originalAwsLogger)
   })
   /*
    * prepare invokation fake context
@@ -46,7 +48,7 @@ describe('Unhandled exception handler decorator', function() {
     const verifyHandlerErrorsLoggedAndHidden = (handlerToDecorate, done) => {
       const verifyErrorsAreHiddenAndLogged = (err, success) => {
         expect(err).to.equal(decorator.DEFAULT_ERROR_MESSAGE)
-        expect(fakeConsole.args).not.to.be.undefined;
+        expect(fakeLogger.args).not.to.be.undefined;
         done()
       };
 
@@ -79,7 +81,7 @@ describe('Unhandled exception handler decorator', function() {
     const verifyHandlerErrorIsPassedThroughUnlogged = (handlerToDecorate, expectedError, done) => {
       const verifyErrorHasBeenPassedThrough = (err, success) => {
         expect(err).to.equal(expectedError)
-        expect(fakeConsole.args).to.be.undefined;
+        expect(fakeLogger.args).to.be.undefined;
         done()
       };
 
