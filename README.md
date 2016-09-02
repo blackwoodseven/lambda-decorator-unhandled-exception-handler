@@ -4,7 +4,7 @@ AWS Lambda decorator to hide errors and unhandled exception from caller.
 ## Usage
 In order to use the logger, first you need to add it to your dependencies with:
 ```bash
-npm install --save git+ssh://git@github.com/blackwoodseven/lambda-decorator-unhandled-exception-handler.git#v1.0.0
+npm install --save git+ssh://git@github.com/blackwoodseven/lambda-decorator-unhandled-exception-handler.git#v1.0.1
 ```
 Note that you should specify which version you need by indicating the git tag after the hash.
 
