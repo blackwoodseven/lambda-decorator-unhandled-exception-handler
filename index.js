@@ -13,7 +13,7 @@ const normalizeError = (err) => {
 }
 
 const UnhandledExceptionHandler = (handlerFn) => (event, context, callback) => {
-
+  console.log('Start UnhandledExceptionHandler decorator')
   const decoratedContext = Object.assign({}, context, {
     fail: (err) => context.fail(normalizeError(err)),
     done: (err, data) => context.done(normalizeError(err), data)
