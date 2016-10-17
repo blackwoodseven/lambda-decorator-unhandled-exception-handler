@@ -10,7 +10,6 @@ const normalizeError = (err) => {
   }
 
   awsLogger.error('Lambda rejected with error', err)
-  awsLogger.error('Stack', err.stack)
 
   return DEFAULT_ERROR_MESSAGE;
 }
@@ -28,7 +27,6 @@ const UnhandledExceptionHandler = (handlerFn) => (event, context, callback) => {
     return handlerFn(event, decoratedContext, decoratedCallback)
   } catch (error) {
     awsLogger.error('Unhandled exception catched', error)
-    awsLogger.error('Stack', error.stack)
     callback(DEFAULT_ERROR_MESSAGE)
   }
 }
