@@ -8,7 +8,10 @@ const normalizeError = (err) => {
   if (err == null || isCustomError(err)) {
     return err;
   }
+
   awsLogger.error('Lambda rejected with error', err)
+  awsLogger.error('Stack', err.stack)
+
   return DEFAULT_ERROR_MESSAGE;
 }
 
