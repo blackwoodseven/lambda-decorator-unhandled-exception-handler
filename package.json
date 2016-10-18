@@ -29,6 +29,6 @@
     "rewire": "^2.5.2"
   },
   "dependencies": {
-    "aws-logger": "git+ssh://git@github.com/blackwoodseven/aws-logger.git#v1.0.1"
+    "aws-logger": "git+ssh://git@github.com/blackwoodseven/aws-logger.git#v1.0.2"
   }
 }
