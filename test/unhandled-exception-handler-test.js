@@ -1,6 +1,6 @@
-const expect = require('chai').expect,
-      rewire = require('rewire'),
-      decorator = rewire('../index');
+const expect = require('chai').expect;
+const rewire = require('rewire');
+const decorator = rewire('../index');
 
 const originalAwsLogger = decorator.__get__('awsLogger');
 

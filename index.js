@@ -1,4 +1,4 @@
-const awsLogger = require('aws-logger');
+let awsLogger = require('aws-logger'); // cannot be const as it's overwritten for mocking in tests
 
 const DEFAULT_ERROR_MESSAGE = 'internal server error';
 
