@@ -114,35 +114,11 @@ describe('Unhandled exception handler decorator', function() {
     verifyDecoratorHidesError(new Error('some unhandled error'), "exceptions");
   });
 
+  /*
+   * Passing through strings
+   */
   context('when decorated handler rejects with custom error messages', () => {
-    verifyDecoratorPassThroughError(decorator.DEFAULT_ERROR_MESSAGE + "my custom message!", "string errors")
+    verifyDecoratorPassThroughError("My custom message!", "string errors")
   });
 
-  // context('when decorated handler rejects with custom error object', () => {
-  //   const SomeCustomErrorObject = { errorMsg: decorator.DEFAULT_ERROR_MESSAGE + "my custom message!", customError: true };
-  //   const verifyHandlerErrorIsPassedThroughUnlogged = (handlerToDecorate, expectedError, done) => {
-  //     const verifyErrorHasBeenPassedThrough = (err, success) => {
-  //       expect(err).to.equal(expectedError);
-  //       expect(fakeLogger.args).to.be.undefined;
-  //       done()
-  //     };
-  //
-  //     executeHandler(handlerToDecorate, verifyErrorHasBeenPassedThrough)
-  //   };
-  //
-  //   it('should pass callback string errors without doing anything', (done) => {
-  //     const handlerThatRejectsWithCustomerErrorMessage_CbStyle = (event,ctx,cb) => { cb(SomeCustomErrorMsg) };
-  //     verifyHandlerErrorIsPassedThroughUnlogged(handlerThatRejectsWithCustomerErrorMessage_CbStyle, SomeCustomErrorMsg, done)
-  //   });
-  //
-  //   it('should pass context.fail string errors without doing anything', (done) => {
-  //     const handlerThatRejectsWithCustomerErrorMessage_CtxFailStyle = (event,ctx,cb) => { ctx.fail(SomeCustomErrorMsg) };
-  //     verifyHandlerErrorIsPassedThroughUnlogged(handlerThatRejectsWithCustomerErrorMessage_CtxFailStyle, SomeCustomErrorMsg, done)
-  //   });
-  //
-  //   it('should pass context.done string errors without doing anything', (done) => {
-  //     const handlerThatRejectsWithCustomerErrorMessage_CtxDoneStyle = (event,ctx,cb) => { ctx.done(SomeCustomErrorMsg) };
-  //     verifyHandlerErrorIsPassedThroughUnlogged(handlerThatRejectsWithCustomerErrorMessage_CtxDoneStyle, SomeCustomErrorMsg, done)
-  //   })
-  // });
 });
