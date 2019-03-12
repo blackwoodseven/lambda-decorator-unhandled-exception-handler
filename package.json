@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/blackwoodseven/lambda-decorator-unhandled-exception-handler",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^2.5.3",
-    "rewire": "^2.5.2"
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "rewire": "^4.0.1"
   },
   "dependencies": {
     "aws-logger": "git+ssh://git@github.com/blackwoodseven/aws-logger.git#v1.0.3"
