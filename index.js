@@ -2,7 +2,7 @@ let awsLogger = require('aws-logger'); // cannot be const as it's overwritten fo
 
 const DEFAULT_ERROR_MESSAGE = 'internal server error';
 
-const isCustomError = (err) => typeof err === 'string';
+const isCustomError = (err) => typeof err === 'string' || err.customError;
 
 const normalizeError = (err) => {
   if (err == null || isCustomError(err)) {

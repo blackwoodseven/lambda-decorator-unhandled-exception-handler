@@ -105,7 +105,7 @@ describe('Unhandled exception handler decorator', function() {
   /*
    * Hiding actual Errors
    */
-  context('when decorated handler explodes with an unhandled exception', () => {
+  context('When decorated handler explodes with an unhandled exception, it', () => {
     it('should hide thrown errors and log them', (done) => {
       const handlerThatThrows = (event,ctx,cb) => { throw new Error('some unhandled error') };
       verifyHandlerErrorsLoggedAndHidden(handlerThatThrows, done)
@@ -117,8 +117,19 @@ describe('Unhandled exception handler decorator', function() {
   /*
    * Passing through strings
    */
-  context('when decorated handler rejects with custom error messages', () => {
+  context('When decorated handler rejects with custom error messages, it', () => {
     verifyDecoratorPassThroughError("My custom message!", "string errors")
+  });
+
+  /*
+   * Checking customError field on objects
+   */
+  context("When decorated handler rejects with custom error object, it", () => {
+    verifyDecoratorPassThroughError({errorMessage: "Some error message", customError: true}, "object errors (custom)")
+  });
+
+  context("When decorated handler rejects with other error object, it", () => {
+    verifyDecoratorHidesError({errorMessage: "Some error message"}, "object errors (not custom)")
   });
 
 });
