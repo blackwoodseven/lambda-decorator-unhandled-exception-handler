@@ -2,7 +2,7 @@ let awsLogger = require('aws-logger'); // cannot be const as it's overwritten fo
 
 const DEFAULT_ERROR_MESSAGE = 'internal server error';
 
-const isCustomError = (err) => typeof err === 'string' || err.customError;
+const isCustomError = (err) => typeof err === 'string';
 
 const normalizeError = (err) => {
   if (err == null || isCustomError(err)) {
@@ -15,7 +15,7 @@ const normalizeError = (err) => {
 };
 
 const UnhandledExceptionHandler = (handlerFn) => (event, context, callback) => {
-  console.log('Start UnhandledExceptionHandler decorator');
+  awsLogger.log('Start UnhandledExceptionHandler decorator');
   const decoratedContext = Object.assign({}, context, {
     fail: (err) => context.fail(normalizeError(err)),
     done: (err, data) => context.done(normalizeError(err), data)
