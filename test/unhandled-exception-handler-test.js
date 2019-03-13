@@ -13,7 +13,8 @@ describe('Unhandled exception handler decorator', function() {
     fakeLogger = {
       error: function() {
         fakeLogger.args = arguments;
-      }
+      },
+      log: function() { } // do nothing, we only want to "log" errors during tests
     };
     decorator.__set__('awsLogger', fakeLogger)
   });
@@ -124,12 +125,8 @@ describe('Unhandled exception handler decorator', function() {
   /*
    * Checking customError field on objects
    */
-  context("When decorated handler rejects with custom error object, it", () => {
-    verifyDecoratorPassThroughError({errorMessage: "Some error message", customError: true}, "object errors (custom)")
-  });
-
-  context("When decorated handler rejects with other error object, it", () => {
-    verifyDecoratorHidesError({errorMessage: "Some error message"}, "object errors (not custom)")
+  context("When decorated handler rejects with error object, it", () => {
+    verifyDecoratorHidesError({errorMessage: "Some error message"}, "object errors")
   });
 
 });
