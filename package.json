@@ -1,6 +1,6 @@
 {
   "name": "lambda-decorator-unhandled-exception-handler",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "AWS Lambda decorator to catch unhandled errors and mask them as internal server error",
   "main": "index.js",
   "scripts": {

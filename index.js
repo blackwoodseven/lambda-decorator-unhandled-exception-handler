@@ -15,16 +15,26 @@ const normalizeError = (err) => {
 };
 
 const UnhandledExceptionHandler = (handlerFn) => (event, context, callback) => {
-  console.log('Start UnhandledExceptionHandler decorator');
+  awsLogger.log('Start UnhandledExceptionHandler decorator');
+  console.dir({event, context, callback});
   const decoratedContext = Object.assign({}, context, {
     fail: (err) => context.fail(normalizeError(err)),
     done: (err, data) => context.done(normalizeError(err), data)
   });
 
-  const decoratedCallback = (err, data) => callback(normalizeError(err), data);
+  const decoratedCallback = (err, data) => {
+    awsLogger.log("Normalising error:");
+    console.dir(err);
+    const normErr = normalizeError(err);
+    console.dir(normErr);
+    return callback(normErr, data)
+  };
 
   try {
-    return handlerFn(event, decoratedContext, decoratedCallback)
+    const res =  handlerFn(event, decoratedContext, decoratedCallback);
+    awsLogger.log("Finish UnhandledExceptionHandler decorator");
+    console.dir(res);
+    return res;
   } catch (error) {
     awsLogger.error('Unhandled exception caught', error);
     callback(DEFAULT_ERROR_MESSAGE)
