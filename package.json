@@ -1,6 +1,6 @@
 {
   "name": "lambda-decorator-unhandled-exception-handler",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "AWS Lambda decorator to catch unhandled errors and mask them as internal server error",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,6 @@
     "rewire": "^4.0.1"
   },
   "dependencies": {
-    "aws-logger": "git+ssh://git@github.com/blackwoodseven/aws-logger.git#v1.0.3"
+    "aws-logger": "git+ssh://git@github.com/blackwoodseven/aws-logger.git#v1.1.0"
   }
 }
